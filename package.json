@@ -1,0 +1,14 @@
+{
+  "name": "terminal-news",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "news": "bin/news"
+  },
+  "scripts": {},
+  "dependencies": {
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {}
+}
