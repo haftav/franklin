@@ -12,5 +12,7 @@
     "dotenv": "^8.0.0",
     "minimist": "^1.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "1.17.1"
+  }
 }
