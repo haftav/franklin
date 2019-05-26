@@ -1,6 +1,7 @@
 const minimist = require('minimist');
 
 module.exports = () => {
+  process.stdout.write('\u001b[2J\u001b[0;0H');
   const args = minimist(process.argv.slice(2));
   let cmd = args._[0] || 'help';
 
@@ -11,7 +12,7 @@ module.exports = () => {
   if (args.version || args.v) {
     cmd = 'version';
   }
-  
+
   switch (cmd) {
     case 'help':
       require('./cmds/help')(args);
