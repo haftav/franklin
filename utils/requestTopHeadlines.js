@@ -7,7 +7,7 @@ module.exports = async () => {
   try {
     const results = await axios({
       method: 'get',
-      url: `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&language=en&pageSize=5`,
+      url: `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&language=en&pageSize=20`,
       params: {
         format: 'json',
       },

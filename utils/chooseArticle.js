@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 module.exports = articles => {
   const choices = articles.map(article => {
         const { name: source } = article.source;
-        const { title: name, description, publishedAt: date, content } = article;
+        const { title: name, description, publishedAt: date, content, url } = article;
         return { 
             name,
             value: {
@@ -12,6 +12,7 @@ module.exports = articles => {
                 date,
                 content,
                 source,
+                url
             },
             short: name
         };
