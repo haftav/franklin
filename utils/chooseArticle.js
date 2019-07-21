@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { green, blue } = require('chalk');
 
 module.exports = articles => {
   const choices = articles.map(article => {
@@ -21,7 +22,7 @@ module.exports = articles => {
     {
       type: 'list',
       name: 'articles',
-      message: 'Top Articles',
+      message: green('Top Articles\n'),
       choices
     },
   ]);
