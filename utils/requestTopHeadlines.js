@@ -3,16 +3,22 @@ require('dotenv').config({ path: __dirname + '/./../.env' });
 
 const { NEWS_API_KEY } = process.env;
 
-module.exports = async () => {
+module.exports = async source => {
   try {
+    let url = `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&language=en&pageSize=20`;
+    if (source) url += `&sources=${source}`
     const results = await axios({
       method: 'get',
-      url: `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&language=en&pageSize=20`,
+      url,
       params: {
         format: 'json',
       },
     });
-    return results.data.articles;
+    if (results.data.status === 'error') {
+      throw new Error(results.data.message);
+    } else {
+      return results.data.articles;
+    }
   } catch (err) {
     console.error(err);
   }
