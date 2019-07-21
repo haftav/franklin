@@ -2,6 +2,7 @@ const axios = require('axios');
 require('dotenv').config({ path: __dirname + '/./../.env' });
 
 const { NEWS_API_KEY } = process.env;
+const { red, yellow } = require('chalk');
 
 module.exports = async source => {
   try {
@@ -21,8 +22,7 @@ module.exports = async source => {
     }
   } catch (err) {
     if (err.response.data.code === 'sourceDoesNotExist') {
-      console.error(`The news source you requested (${source}) doesn't seem to exist. Please try again with a valid news source.\nTo see a list of valid news sources, use the 'sources' command. 
-       `);
+      console.error(red(`The news source you requested ${yellow(`(${source})`)} doesn't seem to exist. Please try again with a valid news source.\nTo see a list of valid news sources, use the 'sources' command.`));
     }
     process.exit(1);
   }
