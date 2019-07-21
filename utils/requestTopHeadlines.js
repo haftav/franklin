@@ -6,7 +6,7 @@ const { NEWS_API_KEY } = process.env;
 module.exports = async source => {
   try {
     let url = `https://newsapi.org/v2/top-headlines?apiKey=${NEWS_API_KEY}&language=en&pageSize=20`;
-    if (source) url += `&sources=${source}`
+    if (source) url += `&sources=${source}`;
     const results = await axios({
       method: 'get',
       url,
@@ -15,11 +15,15 @@ module.exports = async source => {
       },
     });
     if (results.data.status === 'error') {
-      throw new Error(results.data.message);
+      throw new Error('You is error');
     } else {
       return results.data.articles;
     }
   } catch (err) {
-    console.error(err);
+    if (err.response.data.code === 'sourceDoesNotExist') {
+      console.error(`The news source you requested (${source}) doesn't seem to exist. Please try again with a valid news source.\nTo see a list of valid news sources, use the 'sources' command. 
+       `);
+    }
+    process.exit(1);
   }
 };
